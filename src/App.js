@@ -1,4 +1,3 @@
-import Product from './components/Product';
 import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route } from "react-router-dom";
 import Dashboard from "./components/Dashboard";
 import Cart from './components/Cart';

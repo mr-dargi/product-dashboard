@@ -1,8 +1,12 @@
 import {useState, useEffect} from "react";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import { useDispatch } from "react-redux";
+import { add } from "../store/cartSlice";
 
 export default function Product() {
+  const dispatch = useDispatch();
+
   // Save Api data in this state
   const [products, setProducts] = useState([]);
 
@@ -12,6 +16,11 @@ export default function Product() {
       .then(res => res.json())
       .then(data => setProducts(data))
   }, []);
+
+  const addToCart = (product) => {
+    // dispatch an add action 
+    dispatch(add(product));
+  }
 
   // Create cards component
   const cards = products.map(product => {
@@ -30,7 +39,7 @@ export default function Product() {
           </Card.Body>
 
           <Card.Footer style={{ backgroundColor: "white" }}>
-            <Button variant="primary">
+            <Button variant="primary" onClick={() => addToCart(product)}>
               Add to cart
             </Button>
           </Card.Footer>
